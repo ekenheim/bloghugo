@@ -1,0 +1,5 @@
+# prettier should ignore
+.vscode/
+.**/
+*.md
+# *.y*ml

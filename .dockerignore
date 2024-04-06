@@ -1,0 +1,6 @@
+# ignore dirs
+.github/
+node_modules/
+
+# ignore dotfiles
+.*
