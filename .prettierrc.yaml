@@ -6,11 +6,23 @@ singleQuote: false
 quoteProps: "consistent"
 printWidth: 119
 proseWrap: "always"
+plugins:
+  # for global plugins, use full path
+  # dots get to $HOME
+  - "../../.npm-packages/lib/node_modules/prettier-plugin-go-template/lib/index.js"
+  - "../../.npm-packages/lib/node_modules/prettier-plugin-toml/lib/index.cjs"
 overrides:
+  - files: ["*.html", "*.css"]
+    options:
+      parser: go-template
+      singleQuote: false
+      goTemplateBracketSpacing: true
+      # bracketSameLine: true
   - files: "*.md"
     options:
       parser: markdown
       # proseWrap: "preserve"
+  - files: "*.toml"
   - files: "*.yaml"
     options:
       parser: yaml

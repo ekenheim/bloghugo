@@ -2,7 +2,7 @@
 fail_fast: false
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v4.6.0
     hooks:
       - id: end-of-file-fixer
       - id: mixed-line-ending
@@ -25,15 +25,20 @@ repos:
         entry: YAML file extension must be .yaml
         language: fail
         files: \.yml$
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v4.0.0-alpha.8
+  - repo: local
+    # repo: https://github.com/pre-commit/mirrors-prettier
+    # rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
-        args:
-          - --ignore-unknown
-          - --no-error-on-unmatched-pattern
-          # - "--ignore-path '**/*.md'"
-          # - "--ignore-path '**/*.y*ml'"
+        name: ""
+        entry: bash -c "$HOME/.npm-packages/bin/prettier --write --ignore-unknown --no-error-on-unmatched-pattern"
+        language: system
+        # args:
+        #   - --write
+        #   - --ignore-unknown
+        #   - --no-error-on-unmatched-pattern
+        #   # - "--ignore-path '**/*.md'"
+        #   # - "--ignore-path '**/*.y*ml'"
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.39.0
     hooks:
@@ -56,7 +61,7 @@ repos:
         stages: [commit]
         # args: [--ignore, DL3025, --ignore, DL3018]
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.9.0.6
+    rev: v0.10.0.1
     hooks:
       - id: shellcheck
         args: ["-x"]
@@ -67,7 +72,7 @@ repos:
     hooks:
       - id: gitleaks
   - repo: https://github.com/crate-ci/typos
-    rev: v1.20.4
+    rev: v1.20.10
     hooks:
       - id: typos
         args: [--config, .typos.toml]

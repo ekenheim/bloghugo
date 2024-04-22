@@ -1,0 +1,32 @@
+{{/* Custom overlay over theme shortecodes */}}
+{{ $calloutEmojiDict := dict "question" "🙋🏽" "info" "ℹ️" "warning" "⚠️" "error" "🚫" }}
+{{ $type := .Get "type" | default "default" }}
+{{/* If emoji is not set, use the emoji from dict */}}
+{{ $emoji := .Get "emoji" }}
+{{ if eq $emoji "" }}{{ $emoji = index $calloutEmojiDict $type }}{{ end }}
+{{/* Also allow using "icon" */}}
+{{ $icon := .Get "icon" }}
+
+{{ $defaultClass :=
+  "hx-border-cyan-200 hx-bg-cyan-100 hx-text-cyan-900 dark:hx-border-cyan-200/30 dark:hx-bg-cyan-900/30 dark:hx-text-cyan-200"
+}}
+{{ $questionClass :=
+  "hx-border-green-200 hx-bg-green-100 hx-text-green-900 dark:hx-border-green-200/30 dark:hx-bg-green-900/30 dark:hx-text-green-200"
+}}
+{{ $infoClass :=
+  "hx-border-blue-200 hx-bg-blue-100 hx-text-blue-900 dark:hx-border-blue-200/30 dark:hx-bg-blue-900/30 dark:hx-text-blue-200"
+}}
+{{ $warningClass :=
+  "hx-border-amber-200 hx-bg-amber-100 hx-text-amber-900 dark:hx-border-amber-200/30 dark:hx-bg-amber-600/30 dark:hx-text-amber-200"
+}}
+{{ $errorClass :=
+  "hx-border-red-200 hx-bg-red-100 hx-text-red-900 dark:hx-border-red-200/30 dark:hx-bg-red-900/30 dark:hx-text-red-200"
+}}
+
+{{ $class :=
+  cond (eq $type "question") $questionClass (
+  cond (eq $type "info") $infoClass (
+  cond (eq $type "warning") $warningClass (
+  cond (eq $type "error") $errorClass $defaultClass
+  )))
+}}

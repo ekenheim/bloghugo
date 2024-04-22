@@ -8,7 +8,7 @@
 
   outputs = { self, devshell, flake-utils, nixpkgs }:
     flake-utils.lib.eachDefaultSystem (system: {
-      devShell =
+      devShells.default =
         let
           pkgs = import nixpkgs {
             inherit system;
@@ -18,6 +18,7 @@
         in
         pkgs.devshell.mkShell {
           name = "hugo-devshell";
+          # imports = [];
           # a list of packages to add to the shell environment
           packages = [
             pkgs.hugo

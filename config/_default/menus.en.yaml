@@ -1,0 +1,34 @@
+---
+main:
+  - identifier: blog
+    name: Blog
+    pageRef: /
+    weight: 1
+  # - identifier: documentation
+  #   name: Documentation
+  #   pageRef: /docs
+  #   weight: 10
+  # - identifier: projects
+  #   name: Projects
+  #   pageRef: /projects
+  #   weight: 20
+  - identifier: About
+    name: About
+    pageRef: /about
+    weight: 30
+  - name: Search
+    weight: 40
+    params:
+      type: search
+  - name: GitHub
+    weight: 50
+    url: "https://github.com/ahgraber/aimlbling-about"
+    params:
+      icon: github
+# footer:
+# - name: Terms
+#   pageRef: /terms
+#   weight: 10
+# - name: Privacy
+#   pageRef: /privacy
+#   weight: 20

@@ -1,0 +1,22 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+vars:
+  # Binaries
+  PYTHON_BIN: python3
+  HUGO_BIN: hugo
+  # Directories
+  CONTENT_DIR: "{{.ROOT_DIR}}/content"
+  POSTS_DIR: "{{.CONTENT_DIR}}/posts"
+
+includes:
+  hugo: .taskfiles/hugo/taskfile.yaml
+
+dotenv: [".env"]
+
+# env:
+#   ENVVAR: ''
+
+tasks:
+  default: task -l

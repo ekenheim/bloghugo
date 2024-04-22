@@ -1,15 +1,18 @@
 ---
 baseURL: "https://aimlbling-about.ninerealmlabs.com/"
 title: AI/MLbling About
-subtitle:
-  In which I organize my thoughts about LLMs, Generative AI, cool papers from arxiv.org, and other marginalia on topics
-  in data science and machine learning.
-colorScheme: auto
-copyright: AI/MLbling About is licensed under CC BY-NC 4.0
-enableEmoji: false
+# contentDir: /blog
+copyright: '<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC-4.0</a>'
+
+enableEmoji: true
+enableGitInfo: true
+enableInlineShortcodes: true
 enableRobotsTXT: false # use /static/robots.txt
+
 languageCode: en-us
 defaultContentLanguage: "en"
-katex: true
-math: true
-theme: hugo-coder
+timeZone: US/Eastern
+theme: hextra
+# services:
+#   googleAnalytics:
+#     ID: G-MEASUREMENT_ID

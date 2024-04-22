@@ -1,0 +1,64 @@
+---
+katex: false # enables katex on every page
+math: true # enables mathjax on every page.  otherwise set to false and define per page
+
+# theme settings
+author: "Alex Graber"
+license:
+  '<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">AI/MLbling About © 2024 by Alexander Graber
+  is licensed under CC BY-NC-4.0</a>'
+description:
+  "In which I organize my thoughts about LLMs, Generative AI, cool papers from arxiv.org, and other marginalia on
+  topics in data science and machine learning."
+keywords: "blog,developer,datasci,machine_learning,ai"
+
+displayUpdatedDate: true
+dateFormat: "January 2, 2006"
+
+theme:
+  default: system
+  displayToggle: true
+
+blog:
+  list:
+    displayTags: true
+    # date | lastmod | publishDate | title | weight
+    sortBy: date
+    sortOrder: desc # or "asc"
+
+editURL:
+  enable: true
+  base: "https://github.com/ahgraber/aimlbling-about/edit/main/content"
+
+page:
+  # full (100%), wide (90rem), normal (1280px)
+  width: &width wide
+navbar:
+  width: *width
+  displayTitle: true
+  displayLogo: true
+  logo:
+    path: images/logo-icon.png
+    dark: images/logo-icon.png
+    link: /
+    width: 50
+    height: 50
+footer:
+  width: full # *width
+  displayCopyright: true
+  displayPoweredBy: true
+
+search:
+  enable: true
+  type: flexsearch
+  flexsearch:
+    # index page by: content | summary | heading | title
+    index: content
+# comments:
+#   enable: false
+#   type: giscus
+#   giscus:
+#     repo: <repository>
+#     repoId: <repository ID>
+#     category: <category>
+#     categoryId: <category ID>
