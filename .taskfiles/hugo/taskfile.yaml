@@ -5,30 +5,62 @@ version: "3"
 vars:
   CONTENT_DIR: "./content/"
   BLOG_DIR: "{{ .CONTENT_DIR }}/blog"
+
 tasks:
   new:
     desc: Create a new draft post from template
     cmds:
-      - hugo new content blog/{{ .file }}.md
+      - git checkout -b blog/{{ .name }} main
+      - mkdir -p blog/{{ .name }}
+      - hugo new content blog/{{ .name }}/index.md
       # NOTE: using gnu sed via nix; if using osx sed may have to use `sed -i ''`
       - |
-        sed -i "/title: \"\"/c\title: '\{\{ title \"{{ .title }}\" \}\}'" {{ .BLOG_DIR }}/{{ .file }}.md
+        sed -i "/title: \"\"/c\title: '\{\{ title \"{{ .title }}\" \}\}'" {{ .BLOG_DIR }}/{{ .name }}/index.md
+    requires:
+      vars: ['title']
     vars:
-      title: '{{ or ( .title | lower) (fail "Variable `title` is required") }}'
-      file: '{{ .title | replace " " "-" }}'
+      name: '{{ or .title | lower | replace " " "-" }}'
     preconditions:
       - {msg: "Hugo not found", sh: "type hugo"}
 
+  catchup:
+    desc: Catch feature branch up to main
+    cmds:
+      - git stash # save any work-in-progress
+      - git fetch origin main # update remote
+      # - git merge --ff-only origin/main # fastforward
+      - git rebase origin/main
+      - git stash pop # restore work-in-progress
+
   publish:
     desc: Publish a draft post (set 'draft' to false and update the date)
+    summary: |
+      task hugo:publish path="<relative path to index.md>"
     cmds:
       # NOTE: using gnu sed via nix; if using osx sed may have to use `sed -i ''`
       - |
-        sed -i '/draft: true/c\draft: false' {{ .BLOG_DIR }}/{{ .file }}.md
+        sed -i '/draft: true/c\draft: false' {{ .path }}
       - |
-        sed -i '/date: .*/c\date: {{ now.Format "2006-01-02" }}' {{ .BLOG_DIR }}/{{ .file }}.md
-    vars:
-      file: '{{ or ( .file | trimSuffix ".md") (fail "Variable `file` is required") }}'
+        sed -i '/date: .*/c\date: {{ now.Format "2006-01-02" }}' {{ .path }}
+      - echo "Branch is ready for PR"
+      # - task: _pull_request
+    requires:
+      vars: ["path"]
+    preconditions:
+      - {msg: "File not found", sh: "test -f {{ .path }}"}
+
+  # _pull_request:
+  #   desc: Create a pull request from a draft branch
+  #   internal: true
+  #   cmds:
+  #     - gh pr create --title "Publish post - {{ .file }}" --body "Pull request body"
+  #   # dotenv: [".env"]
+  #   vars:
+  #     file: '{{ or ( .file | lower | trimSuffix ".md") (fail "Variable `file` is required") }}'
+  #   preconditions:
+  #     - {msg: "github cli ('gh') not found", sh: "type gh"}
+  #     - {msg: "Github auth not found.  Run `gh auth login --hostname github.com", sh: "gh auth status"}
+
 
   build:
     desc: Render all static site content
