@@ -1,9 +1,12 @@
 # gitignore
 
 # hugo files
+/assets/jsconfig.json
 /public/
-resources/
+/resources/
+/themes/*
 .hugo_build.lock
+hugo_stats.json
 
 # Editors
 .vscode/
@@ -38,8 +41,7 @@ TODO.md
 *pytest*
 *cache*
 node_modules/
-public/
 
 # retain files
-!**.gitkeep
-!**.gitignore
+!.gitkeep
+!.gitignore
