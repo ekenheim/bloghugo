@@ -26,8 +26,19 @@ tasks:
     interactive: true
     cmds:
       - git stash # save any work-in-progress
+      - defer: git stash pop # restore work-in-progress
       - git fetch origin main # update remote
       # - git merge origin/main
-      - git rebase origin/main
+      # - git rebase origin/main
+      - task: _rebase
       - git push --force-with-lease
-      - git stash pop # restore work-in-progress
+      - echo "Caught up with main!"
+
+  _rebase:
+    desc: Git rebase on main
+    ignore_error: true
+    interactive: true
+    # internal: true
+    cmds:
+      - git rebase origin/main
+      - echo "git rebase successful"

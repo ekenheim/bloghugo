@@ -5,7 +5,6 @@
   inputs.devshell.url = "github:numtide/devshell";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
-
   outputs = { self, devshell, flake-utils, nixpkgs }:
     flake-utils.lib.eachDefaultSystem (system: {
       devShells.default =
