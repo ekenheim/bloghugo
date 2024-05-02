@@ -62,10 +62,9 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}
           tags: |
-            # set date 'version' tag
-            type=raw,value={{date 'YYYY.MM.DD-HHmm' tz='America/New_York'}}
-            # set latest tag for main branch
-            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
+            # set date tag for versioning and 'latest' tag
+            type=raw,value={{date 'YYYY.MM.DDHHmm' tz='America/New_York'}},priority=1000
+            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Login to GitHub Container Registry ✅
         uses: docker/login-action@v3
