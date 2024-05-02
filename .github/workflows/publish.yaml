@@ -3,12 +3,12 @@
 name: Build Hugo container image
 
 on: # yamllint disable-line rule:truthy
-  pull_request: # Runs on PRs into the default branch on specified paths
-    branches: ["main"]
-    paths: ["content/**", "assets/**", "config/**", "layouts/**", "static/**"]
-  # push: # Runs on pushes targeting the default branch
+  # pull_request: # Runs on PRs into the default branch on specified paths
   #   branches: ["main"]
   #   paths: ["content/**", "assets/**", "config/**", "layouts/**", "static/**"]
+  push: # Runs on pushes targeting the default branch; merged PRs result in pushes
+    branches: ["main"]
+    paths: ["content/**", "assets/**", "config/**", "layouts/**", "static/**"]
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
 # yamllint disable rule:colons
