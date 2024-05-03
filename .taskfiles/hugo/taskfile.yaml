@@ -57,7 +57,14 @@ tasks:
 
   demo:
     desc: Serve the site (with drafts enabled)
-    cmd: hugo serve -D
+    cmd: hugo server -D --disableFastRender
+    preconditions:
+      - {msg: "Hugo not found", sh: "type hugo"}
+
+  serve:
+    desc: Render all static site content
+    cmd: hugo
+    # cmd: nix build '.?submodules=1'
     preconditions:
       - {msg: "Hugo not found", sh: "type hugo"}
 
