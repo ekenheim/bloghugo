@@ -86,11 +86,10 @@ tasks:
     cmds:
       - |
         docker build \
-          -t ghcr.io/ahgraber/aimlbling-about:$(date +"%Y.%m.%d%H%M") \
-          -t ghcr.io/ahgraber/aimlbling-about:latest \
+          -t ghcr.io/ahgraber/aimlbling-about:debug \
           -f ./docker/Dockerfile \
           .
-      - docker run --rm -p 8080:8080 ghcr.io/ahgraber/aimlbling-about:latest
+      - docker run --rm -p 8080:8080 ghcr.io/ahgraber/aimlbling-about:debug
       - echo "Run `colima stop` to clean up!"
     preconditions:
       - {msg: "Docker not found", sh: "type docker"}

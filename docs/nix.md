@@ -1,6 +1,36 @@
-# Building docker images with nix
+# Nix
 
-## References
+## Nix & Numtide devshell
+
+For the sake of complication (and keeping a pristine local environment), I'll use `nix` with [numtide's `devshell`](https://numtide.github.io/devshell/getting_started.html) to install/manage the dependencies.
+
+To start, run `nix develop` at the repo root.  Or if using `direnv`, add it to the `.envrc`:
+
+```sh
+# Watch & reload direnv on change
+watch_file devshell.toml
+
+if [[ $(type -t use_flake) != function ]]; then
+  echo "ERROR: use_flake function missing."
+  echo "Please update direnv to v2.30.0 or later."
+  exit 1
+fi
+use flake
+```
+
+[Getting started - devshell](https://numtide.github.io/devshell/getting_started.html)
+[Getting started with Nix Flakes and devshell](https://yuanwang.ca/posts/getting-started-with-flakes.html)
+
+## Rendering hugo
+
+The static site can be generated with `hugo`, assuming the nix devshell is active
+
+```sh
+nix build '.?submodules=1'
+# nix outputs are in ./result
+```
+
+## Building docker images with nix
 
 - [Nix is a better Docker image builder than Docker's image builder - Xe Iaso](https://xeiaso.net/talks/2024/nix-docker-build/)
 - [Rust Environment and Docker Build with Nix Flakes | John's Codes](https://johns.codes/blog/rust-enviorment-and-docker-build-with-nix-flakes#make-a-docker-image)

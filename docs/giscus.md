@@ -1,5 +1,7 @@
 # [Giscus](https://giscus.app/)
 
+A comments system powered by GitHub Discussions
+
 ## Build
 
 ## Containerize
