@@ -1,12 +1,10 @@
 ---
 title: Hello World!
 date: 2024-04-22
-tags: [
-  'meta',
-  'blog',
-  'hugo',
-  'homelab',
-]
+tags:
+  - 'meta'
+  - 'blogumentation'
+  - 'homelab'
 draft: false
 ---
 

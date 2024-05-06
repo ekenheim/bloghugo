@@ -1,12 +1,11 @@
 ---
 title: No Mo Robo
 date: 2024-05-03
-tags: [
- 'copyright',
- 'generative ai',
- 'privacy',
- 'opinion',
-]
+tags:
+  - 'opinion'
+  - 'generative AI'
+  - 'LLMs'
+  - 'copyright'
 series: []
 draft: false
 ---

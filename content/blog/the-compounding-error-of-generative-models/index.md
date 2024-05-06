@@ -1,10 +1,11 @@
 ---
 title: The Compounding Error of Generative Models
 date: 2024-04-30
-tags: [
-  "LLMs",
-  "generative ai",
-]
+tags:
+  - 'agents'
+  - 'generative AI'
+  - 'prompts'
+  - 'LLMs'
 series: []
 math: true
 draft: false
