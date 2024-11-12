@@ -11,7 +11,7 @@ COPY . .
 RUN --mount=type=cache,target=/tmp/hugo_cache \
     hugo --minify
 
-FROM docker.io/library/nginx:1.26@sha256:defdd267daef9a70ce322c3e6d8da716a4fd23e85b2fea311af076f1129186c2
+FROM docker.io/library/nginx:1.26@sha256:868367cf5bc9d07b10c57f3a96c76fa49987e048bc396b2d2c431829ffdcb453
 # implement changes required to run NGINX as an less-privileged user
 RUN \
     sed -i 's,/var/run/nginx.pid,/tmp/nginx.pid,' /etc/nginx/nginx.conf \
