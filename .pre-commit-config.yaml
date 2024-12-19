@@ -93,7 +93,7 @@ repos:
         # ignore '*.zsh" scripts'
         exclude: "^.*zsh$"
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.18.2
+    rev: v8.21.3
     hooks:
       - id: gitleaks
   - repo: https://github.com/crate-ci/typos
